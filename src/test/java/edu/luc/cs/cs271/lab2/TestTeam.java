@@ -4,7 +4,7 @@ import org.junit.Test;
 import static org.junit.Assert.*;
 
 public class TestTeam {
-  
+
   Team makeTeamFixture(final String name, final String headcoach, final int funding) {
     return new Team(name, headcoach, funding);
   }
@@ -18,9 +18,24 @@ public class TestTeam {
       // if we landed here, we're good!
     }
   }
-  
-  // TODO testConstructorValidHeadcoach
-  // TODO testConstructorValidFunding
+
+  @Test
+  public void testConstructorValidHeadcoach() {
+    try {
+      new Team("USA", null, 500);
+      fail("should have thrown IllegalArgumentException");
+    } catch (final Throwable ex) {
+    }
+  }
+
+  @Test
+  public void testConstructorValidFunding() {
+    try {
+      new Team("USA", "Klinsman", 0);
+      fail("should have thrown IllegalArgumentsException");
+    } catch (final Throwable ex) {
+    }
+  }
 
   @Test
   public void testGetName() {
@@ -28,7 +43,19 @@ public class TestTeam {
     final Team t = makeTeamFixture(name, "Klinsmann", 500);
     assertEquals(name, t.getName());
   }
+
+  @Test
+  public void testGetCoach(){
+    final String name = "Klinsman";
+    final Team t = makeTeamFixture("USA", name, 500);
+    assertEquals(name, t.getHeadcoach());
+  }
+
+  @Test
+  public void testGetFunding(){
+    final int funding = 500;
+    final Team t = makeTeamFixture("USA", "Klinsman",funding);
+    assertEquals(funding, t.getFunding());
+  }
   
-  // TODO testGetHeadcoach
-  // TODO testGetFunding
 }

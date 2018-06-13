@@ -14,12 +14,17 @@ public class Team {
   /** Constructs a new team. */
   public Team(final String name, final String headcoach, final int funding) {
     if (name == null) {
-      throw new IllegalArgumentException("name is null");
+      throw new IllegalArgumentException("Name is null");
     }
-    // TODO validity checking for headcoach
-    // TODO validity checking for funding
+    if (headcoach == null) {
+      throw new IllegalArgumentException("Headcoach is null");
+    }
+    if (funding <= 0) {
+      throw new IllegalArgumentException("Funding must be a positive number!");
+    }
     this.name = name;
-    // TODO complete this constructor
+    this.headcoach = headcoach;
+    this.funding = funding;
   }
 
   /** Returns the team's name. */
@@ -29,13 +34,19 @@ public class Team {
 
   /** Returns the team's head coach. */
   public String getHeadcoach() {
-    // TODO complete this method
-    return null;
+    return this.headcoach;
   }
 
   /** Returns the team's funding level. */
   public int getFunding() {
-    // TODO complete this method
-    return -1;
+    return this.funding;
+  }
+
+  public static void printResults(final Team team, final int pos ) {
+    System.out.println("Name: " + team.getName());
+    System.out.println("Head coach: " + team.getHeadcoach());
+    System.out.println("Funding: " + team.getFunding());
+    System.out.println("Array index: " + pos);
+    System.out.println("Ranking: " + (pos + 1));
   }
 }
